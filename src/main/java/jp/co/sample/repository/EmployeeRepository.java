@@ -35,7 +35,12 @@ public class EmployeeRepository {
 		return employee;
 	};
 
-	/**全件検索*/
+	
+	/**
+	 * 全件検索.
+	 * 
+	 * @return 全件の情報を表示.
+	 */
 	public List<Employee> findAll() {
 		String sql = "select id,name,image,gender,hire_date,mail_adress,zip_code,address, telephone,salary,characteristics,depenentsCount";
 		
@@ -44,7 +49,13 @@ public class EmployeeRepository {
 
 	}
 	
-	/**id検索*/
+
+	/**
+	 * idを指定して検索.
+	 * 
+	 * @param id id
+	 * @return id検索した情報を表示.
+	 */
 	public Employee load(Integer id) {
 		String sql="select id,name,image,gender,hire_date,mail_adress,zip_code,address, telephone,salary,characteristics,depenentsCount where id=:id";
 		
@@ -54,7 +65,12 @@ public class EmployeeRepository {
 		return employee;
 	}
 	
-	/**扶養人数の更新*/
+
+	/**
+	 * 従業員の情報を更新.
+	 * 
+	 * @param employee 従業員
+	 */
 	public void update(Employee employee) {
 		String updateSql="update employees set depenentsCount=:depenentsCount where id=:id";
 		SqlParameterSource param =new  MapSqlParameterSource().addValue("id", employee.getId()).addValue("depenentsCount", employee.getDepenentsCount());

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.domain.Administrator;
 import jp.co.sample.form.InsertAdministratorForm;
+import jp.co.sample.form.LoginForm;
 import jp.co.sample.service.AdministratorService;
 
 /**
@@ -25,6 +26,11 @@ public class AdministratorController {
 	@ModelAttribute
 	public InsertAdministratorForm setUpInsertAdministratorForm() {
 		return new InsertAdministratorForm();
+	}
+	
+	@ModelAttribute
+	public LoginForm setUpLoginForm() {
+		return new LoginForm();
 	}
 
 	/**
@@ -49,11 +55,22 @@ public class AdministratorController {
 		administrator.setName(form.getName());
 		administrator.setMailAdress(form.getMailAddress());
 		administrator.setPassword(form.getPassword());
+//		SqlParameterSource param = new BeanPropertySqlParameterSource(form);
 		
 		administratorService.insert(administrator);
 		
 		return "redirect:/";
 		
+	}
+	
+	/**
+	 * ログイン画面に遷移.
+	 * 
+	 * @return ログイン画面に遷移.
+	 */
+	@RequestMapping("/")
+	public  String toLogin() {
+		return "administrator/login";
 	}
 
 }

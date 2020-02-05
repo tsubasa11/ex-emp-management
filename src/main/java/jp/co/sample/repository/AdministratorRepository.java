@@ -1,7 +1,5 @@
 package jp.co.sample.repository;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -46,7 +44,6 @@ public class AdministratorRepository {
 		template.update(insertSql, param);
 	}
 
-	/** メールアドレスとパスワードで検索　リストにない場合はnullを表示 */
 	/**
 	 * 管理者情報をメールアドレスとパスワードで検索する.
 	 * @param mailAddress　メールアドレス
