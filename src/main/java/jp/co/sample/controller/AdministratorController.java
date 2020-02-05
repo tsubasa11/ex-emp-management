@@ -2,9 +2,11 @@ package jp.co.sample.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jp.co.sample.domain.Administrator;
 import jp.co.sample.form.InsertAdministratorForm;
 import jp.co.sample.service.AdministratorService;
 
@@ -41,6 +43,23 @@ public class AdministratorController {
 	public String toInsert() {
 
 		return "administrator/insert.html";
+	}
+	
+	/**
+	 * @param form 入力された情報を格納する変数
+	 * @return /にリダイレクト
+	 */
+	@RequestMapping("/insert")
+	public String insert(InsertAdministratorForm form) {
+		Administrator administrator = new Administrator();
+		administrator.setName(form.getName());
+		administrator.setMailAdress(form.getMailAddress());
+		administrator.setPassword(form.getPassword());
+		
+		administratorService.insert(administrator);
+		
+		return "redirect:/";
+		
 	}
 
 }
