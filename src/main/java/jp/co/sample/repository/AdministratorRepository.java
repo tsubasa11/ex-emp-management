@@ -1,10 +1,14 @@
 package jp.co.sample.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.stereotype.Repository;
 
 import jp.co.sample.domain.Administrator;
@@ -15,6 +19,7 @@ public class AdministratorRepository {
 	@Autowired
 	NamedParameterJdbcTemplate template;
 
+	/**RowMapperを定義*/
 	private static final RowMapper<Administrator> ADMINISTRATOR_ROW_MAPPER = (rs, i) -> {
 		Administrator administrator = new Administrator();
 		administrator.setId(rs.getInt("id"));
@@ -24,11 +29,22 @@ public class AdministratorRepository {
 		return administrator;
 	};
 	
+	/**sqlにデータを挿入する*/
 	public void insert(Administrator administrator) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
-		String insertSql="insert into administrators (id,name,mail_adress,password) values(:id,:name,:mailAdress,:password)";
+		String insertSql="insert into administrators (name,mail_adress,password) values(:name,:mailAdress,:password)";
 		
 		template.update(insertSql, param);
+	}
+	
+	/**メールアドレスとパスワードで検索*/
+	public List<Administrator> findByMailAddressAndPassword(String mailAddress,String password) {
+		String sql ="select id,name,mail_adress,password from administrators where mail_address=:mailAdress and password=:password";
+		
+		MapSqlParameterSource param = new MapSqlParameterSource().addValue("mailAdress", mailAddress).addValue("password", password);
+		List<Administrator> administrator=template.query(sql, param, ADMINISTRATOR_ROW_MAPPER);
+		
+		return administrator;
 	}
 
 }
