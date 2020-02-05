@@ -17,7 +17,7 @@ import jp.co.sample.domain.Administrator;
 public class AdministratorRepository {
 
 	@Autowired
-	NamedParameterJdbcTemplate template;
+	private NamedParameterJdbcTemplate template;
 
 	/**RowMapperを定義*/
 	private static final RowMapper<Administrator> ADMINISTRATOR_ROW_MAPPER = (rs, i) -> {
