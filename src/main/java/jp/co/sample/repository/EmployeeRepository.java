@@ -1,20 +1,24 @@
 package jp.co.sample.repository;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import jp.co.sample.domain.Administrator;
 import jp.co.sample.domain.Employee;
 
 @Repository
 public class EmployeeRepository {
-	
+
 	@Autowired
 	private NamedParameterJdbcTemplate template;
-	
-	/**RowMapperを定義*/
+
+	/** RowMapperを定義 */
 	private static final RowMapper<Employee> EMPLOYEE_ROW_MAPPER = (rs, i) -> {
 		Employee employee = new Employee();
 		employee.setId(rs.getInt("id"));
@@ -32,4 +36,20 @@ public class EmployeeRepository {
 		return employee;
 	};
 
+	public List<Employee> findAll() {
+		String sql = "select id,name,image,gender,hire_date,mail_adress,zip_code,address, telephone,salary,characteristics,depenentsCount";
+		
+		List<Employee> list = template.query(sql, EMPLOYEE_ROW_MAPPER);
+		return list;
+
+	}
+	
+	public Employee load(Integer id) {
+		String sql="select id,name,image,gender,hire_date,mail_adress,zip_code,address, telephone,salary,characteristics,depenentsCount where id=:id";
+		
+		SqlParameterSource param =new  MapSqlParameterSource().addValue("id", id);
+		Employee employee = template.queryForObject(sql, param, EMPLOYEE_ROW_MAPPER);
+		
+		return employee;
+	}
 }
