@@ -27,7 +27,7 @@ public class AdministratorRepository {
 		Administrator administrator = new Administrator();
 		administrator.setId(rs.getInt("id"));
 		administrator.setName(rs.getString("name"));
-		administrator.setMailAdress(rs.getString("mail_adress"));
+		administrator.setMailAdress(rs.getString("mail_address"));
 		administrator.setPassword(rs.getString("password"));
 		return administrator;
 	};
@@ -52,19 +52,20 @@ public class AdministratorRepository {
 	 */
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
 
-		String sql = "select id,name,mail_adress,password from administrators where mail_address=:mailAdress and password=:password";
+		String sql = "select id,name,mail_address,password from administrators where mail_address=:mailAddress and password=:password";
 
-		MapSqlParameterSource param = new MapSqlParameterSource().addValue("mailAdress", mailAddress)
+		MapSqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress)
 				.addValue("password", password);
 
+		try {
+			Administrator administrator = template.queryForObject(sql, param, ADMINISTRATOR_ROW_MAPPER);
+			return administrator;			
+		}catch(Exception ex) {
+			return null;			
+		}
 
-		Administrator administrator = template.queryForObject(sql, param, ADMINISTRATOR_ROW_MAPPER);
-
-		if (administrator.getId()==null|| administrator.getMailAdress()==null){
-		return null;
-	}
+	//	if (administrator==null){}
 		
-		return administrator;
 	}
 
 }
