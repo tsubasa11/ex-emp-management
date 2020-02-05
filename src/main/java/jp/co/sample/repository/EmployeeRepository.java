@@ -36,6 +36,7 @@ public class EmployeeRepository {
 		return employee;
 	};
 
+	/**全件検索*/
 	public List<Employee> findAll() {
 		String sql = "select id,name,image,gender,hire_date,mail_adress,zip_code,address, telephone,salary,characteristics,depenentsCount";
 		
@@ -44,6 +45,7 @@ public class EmployeeRepository {
 
 	}
 	
+	/**id検索*/
 	public Employee load(Integer id) {
 		String sql="select id,name,image,gender,hire_date,mail_adress,zip_code,address, telephone,salary,characteristics,depenentsCount where id=:id";
 		
@@ -51,5 +53,12 @@ public class EmployeeRepository {
 		Employee employee = template.queryForObject(sql, param, EMPLOYEE_ROW_MAPPER);
 		
 		return employee;
+	}
+	
+	/**扶養人数の更新*/
+	public void update(Employee employee) {
+		String updateSql="update employees set depenentsCount=:depenentsCount where id=:id";
+		SqlParameterSource param =new  MapSqlParameterSource().addValue("id", employee.getId()).addValue("depenentsCount", employee.getDepenentsCount());
+		template.queryForObject(updateSql, param, EMPLOYEE_ROW_MAPPER);
 	}
 }
