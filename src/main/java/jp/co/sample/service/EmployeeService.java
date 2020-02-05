@@ -19,7 +19,8 @@ import jp.co.sample.repository.EmployeeRepository;
 @Transactional
 public class EmployeeService {
 
-	private EmployeeRepository repository;
+	@Autowired
+	private EmployeeRepository employeeRepository;
 	
 	/**
 	 * リポジトリーのfindAllメソッドの呼び出し.
@@ -29,6 +30,6 @@ public class EmployeeService {
 	@Autowired
 	
 	public List<Employee> showList(){
-		return repository.findAll();
+		return employeeRepository.findAll();
 	}
 }

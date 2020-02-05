@@ -25,13 +25,13 @@ public class EmployeeRepository {
 		employee.setImage(rs.getString("image"));
 		employee.setGender(rs.getString("gender"));
 		employee.setHireDate(rs.getDate("hire_date"));
-		employee.setMailAdress(rs.getString("mail_adress"));
+		employee.setMailAddress(rs.getString("mail_address"));
 		employee.setZipCode(rs.getString("zip_code"));
 		employee.setAddress(rs.getString("address"));
 		employee.setTelephone(rs.getString("telephone"));
 		employee.setSalary(rs.getInt("salary"));
 		employee.setCharacteristics(rs.getString("characteristics"));
-		employee.setDepenentsCount(rs.getInt("depenentsCount"));
+		employee.setDepenentsCount(rs.getInt("dependents_count"));
 		return employee;
 	};
 
@@ -42,7 +42,7 @@ public class EmployeeRepository {
 	 * @return 全件の情報を表示.
 	 */
 	public List<Employee> findAll() {
-		String sql = "select id,name,image,gender,hire_date,mail_adress,zip_code,address, telephone,salary,characteristics,depenentsCount";
+		String sql = "select id,name,image,gender,hire_date,mail_address,zip_code,address, telephone,salary,characteristics,dependents_count from employees order by hire_date desc";
 		
 		List<Employee> list = template.query(sql, EMPLOYEE_ROW_MAPPER);
 		return list;
@@ -57,7 +57,7 @@ public class EmployeeRepository {
 	 * @return id検索した情報を表示.
 	 */
 	public Employee load(Integer id) {
-		String sql="select id,name,image,gender,hire_date,mail_adress,zip_code,address, telephone,salary,characteristics,depenentsCount where id=:id";
+		String sql="select id,name,image,gender,hire_date,mail_address,zip_code,address, telephone,salary,characteristics,dependents_count where id=:id";
 		
 		SqlParameterSource param =new  MapSqlParameterSource().addValue("id", id);
 		Employee employee = template.queryForObject(sql, param, EMPLOYEE_ROW_MAPPER);
@@ -72,7 +72,7 @@ public class EmployeeRepository {
 	 * @param employee 従業員
 	 */
 	public void update(Employee employee) {
-		String updateSql="update employees set depenentsCount=:depenentsCount where id=:id";
+		String updateSql="update employees set dependents_count=: where id=:id";
 		SqlParameterSource param =new  MapSqlParameterSource().addValue("id", employee.getId()).addValue("depenentsCount", employee.getDepenentsCount());
 		template.queryForObject(updateSql, param, EMPLOYEE_ROW_MAPPER);
 	}

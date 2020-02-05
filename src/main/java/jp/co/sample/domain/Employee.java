@@ -21,7 +21,7 @@ public class Employee {
 	/** 入社日 */
 	private java.util.Date hireDate;
 	/** メールアドレス */
-	private String mailAdress;
+	private String mailAddress;
 	/** 郵便番号 */
 	private String zipCode;
 	/** 住所 */
@@ -39,7 +39,7 @@ public class Employee {
 
 	}
 
-	public Employee(Integer id, String name, String image, String gender, Date hireDate, String mailAdress,
+	public Employee(Integer id, String name, String image, String gender, Date hireDate, String mailAddress,
 			String zipCode, String address, String telephone, Integer salary, String characteristics,
 			Integer depenentsCount) {
 		super();
@@ -48,7 +48,7 @@ public class Employee {
 		this.image = image;
 		this.gender = gender;
 		this.hireDate = hireDate;
-		this.mailAdress = mailAdress;
+		this.mailAddress = mailAddress;
 		this.zipCode = zipCode;
 		this.address = address;
 		this.telephone = telephone;
@@ -97,12 +97,12 @@ public class Employee {
 		this.hireDate = hireDate;
 	}
 
-	public String getMailAdress() {
-		return mailAdress;
+	public String getMailAddress() {
+		return mailAddress;
 	}
 
-	public void setMailAdress(String mailAdress) {
-		this.mailAdress = mailAdress;
+	public void setMailAddress(String mailAddress) {
+		this.mailAddress = mailAddress;
 	}
 
 	public String getZipCode() {
@@ -156,11 +156,11 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", name=" + name + ", image=" + image + ", gender=" + gender + ", hireDate="
-				+ hireDate + ", mailAdress=" + mailAdress + ", zipCode=" + zipCode + ", address=" + address
+				+ hireDate + ", mailAddress=" + mailAddress + ", zipCode=" + zipCode + ", address=" + address
 				+ ", telephone=" + telephone + ", salary=" + salary + ", characteristics=" + characteristics
 				+ ", depenentsCount=" + depenentsCount + ", getId()=" + getId() + ", getName()=" + getName()
 				+ ", getImage()=" + getImage() + ", getGender()=" + getGender() + ", getHireDate()=" + getHireDate()
-				+ ", getMailAdress()=" + getMailAdress() + ", getZipCode()=" + getZipCode() + ", getAddress()="
+				+ ", getMailAddress()=" + getMailAddress() + ", getZipCode()=" + getZipCode() + ", getAddress()="
 				+ getAddress() + ", getTelephone()=" + getTelephone() + ", getSalary()=" + getSalary()
 				+ ", getCharacteristics()=" + getCharacteristics() + ", getDepenentsCount()=" + getDepenentsCount()
 				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
