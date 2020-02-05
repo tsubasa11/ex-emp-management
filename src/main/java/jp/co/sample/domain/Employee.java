@@ -2,6 +2,12 @@ package jp.co.sample.domain;
 
 import java.util.Date;
 
+/**
+ * 従業員情報を表すドメイン.
+ * 
+ * @author namikitsubasa
+ *
+ */
 public class Employee {
 
 	/** id */

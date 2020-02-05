@@ -2,7 +2,6 @@ package jp.co.sample.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -11,7 +10,7 @@ import jp.co.sample.form.InsertAdministratorForm;
 import jp.co.sample.service.AdministratorService;
 
 /**
- * administratorリポジトリを実行するコントローラ.
+ * 管理者情報を操作するコントローラ.
  * 
  * @author namikitsubasa
  *
@@ -23,21 +22,15 @@ public class AdministratorController {
 	@Autowired
 	private AdministratorService administratorService;
 
-	/**
-	 * 入力画面から情報を受け取る
-	 * 受け取った情報をInsertAdministratorFormオブジェクトに格納し、そのオブジェクトをリクエストスコープに格納
-	 * 
-	 * @return 画面遷移
-	 */
 	@ModelAttribute
 	public InsertAdministratorForm setUpInsertAdministratorForm() {
 		return new InsertAdministratorForm();
 	}
 
 	/**
-	 * insertメソッドの実行
+	 * 管理者情報登録画面へ遷移する.
 	 * 
-	 * @return　画面遷移
+	 * @return　管理者情報登録画面
 	 */
 	@RequestMapping("/toInsert")
 	public String toInsert() {
@@ -46,8 +39,9 @@ public class AdministratorController {
 	}
 	
 	/**
-	 * @param form 入力された情報を格納する変数
-	 * @return /にリダイレクト
+	 * 
+	 * @param form 入力された情報を格納する変数(リクエストパラメータ)
+	 * @return ログイン画面
 	 */
 	@RequestMapping("/insert")
 	public String insert(InsertAdministratorForm form) {

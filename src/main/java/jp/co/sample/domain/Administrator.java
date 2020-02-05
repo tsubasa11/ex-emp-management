@@ -1,20 +1,25 @@
 package jp.co.sample.domain;
 
+/**
+ * 管理者情報を表すドメイン.
+ * 
+ * @author namikitsubasa
+ *
+ */
 public class Administrator {
 
-	/** 従業員id */
+	/** id */
 	private Integer id;
 
-	/** 従業員の名前 */
+	/** 名前 */
 	private String name;
 
-	/** 従業員のアドレス */
+	/** アドレス */
 	private String mailAdress;
 
-	/** 従業員のパスワード */
+	/** パスワード */
 	private String password;
 
-	/** 全ての情報を定義 */
 	public Administrator(Integer id, String name, String mailAdress, String password) {
 		super();
 		this.id = id;
