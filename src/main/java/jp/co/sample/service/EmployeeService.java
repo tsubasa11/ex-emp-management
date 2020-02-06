@@ -27,9 +27,29 @@ public class EmployeeService {
 	 * 
 	 * @return 従業員情報を全て取得.
 	 */
-	@Autowired
+
 	
 	public List<Employee> showList(){
 		return employeeRepository.findAll();
+	}
+	
+	/**
+	 * 
+	 * リポジトリーのloadメソッドの呼び出し.
+	 * 
+	 * @param id
+	 * @return 従業員のid検索
+	 */
+	public Employee showDetail(Integer id) {
+		return employeeRepository.load(id);
+	}
+	
+	/**
+	 * リポジトリーのupdateメソッドの呼び出し.
+	 * 
+	 * @param employee 従業員情報
+	 */
+	public void update(Employee employee) {
+		employeeRepository.update(employee);
 	}
 }

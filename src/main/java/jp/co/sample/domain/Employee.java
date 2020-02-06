@@ -33,7 +33,7 @@ public class Employee {
 	/** 特性 */
 	private String characteristics;
 	/** 扶養人数 */
-	private Integer depenentsCount;
+	private Integer DependentsCount;
 
 	public Employee() {
 
@@ -41,7 +41,7 @@ public class Employee {
 
 	public Employee(Integer id, String name, String image, String gender, Date hireDate, String mailAddress,
 			String zipCode, String address, String telephone, Integer salary, String characteristics,
-			Integer depenentsCount) {
+			Integer DependentsCount) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -54,7 +54,7 @@ public class Employee {
 		this.telephone = telephone;
 		this.salary = salary;
 		this.characteristics = characteristics;
-		this.depenentsCount = depenentsCount;
+		this.DependentsCount = DependentsCount;
 	}
 
 	public Integer getId() {
@@ -145,12 +145,12 @@ public class Employee {
 		this.characteristics = characteristics;
 	}
 
-	public Integer getDepenentsCount() {
-		return depenentsCount;
+	public Integer getDependentsCount() {
+		return DependentsCount;
 	}
 
-	public void setDepenentsCount(Integer depenentsCount) {
-		this.depenentsCount = depenentsCount;
+	public void setDependentsCount(Integer DependentsCount) {
+		this.DependentsCount = DependentsCount;
 	}
 
 	@Override
@@ -158,11 +158,11 @@ public class Employee {
 		return "Employee [id=" + id + ", name=" + name + ", image=" + image + ", gender=" + gender + ", hireDate="
 				+ hireDate + ", mailAddress=" + mailAddress + ", zipCode=" + zipCode + ", address=" + address
 				+ ", telephone=" + telephone + ", salary=" + salary + ", characteristics=" + characteristics
-				+ ", depenentsCount=" + depenentsCount + ", getId()=" + getId() + ", getName()=" + getName()
+				+ ", DependentsCount=" + DependentsCount + ", getId()=" + getId() + ", getName()=" + getName()
 				+ ", getImage()=" + getImage() + ", getGender()=" + getGender() + ", getHireDate()=" + getHireDate()
 				+ ", getMailAddress()=" + getMailAddress() + ", getZipCode()=" + getZipCode() + ", getAddress()="
 				+ getAddress() + ", getTelephone()=" + getTelephone() + ", getSalary()=" + getSalary()
-				+ ", getCharacteristics()=" + getCharacteristics() + ", getDepenentsCount()=" + getDepenentsCount()
+				+ ", getCharacteristics()=" + getCharacteristics() + ", getDependentsCount()=" + getDependentsCount()
 				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
 				+ "]";
 	}

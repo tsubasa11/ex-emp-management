@@ -87,19 +87,28 @@ public class AdministratorController {
 	 * @return ログイン画面、もしはログイン後の画面を表示
 	 */
 	@RequestMapping("/login")
-	public String login(LoginForm form,Model model) {
-		Administrator administrator=administratorService.login(form.getMailAddress(), form.getPassword());
+	public String login(LoginForm form, Model model) {
+		Administrator administrator = administratorService.login(form.getMailAddress(), form.getPassword());
 		if (administrator == null) {
 			String error = "メールアドレスまたはパスワードが不正です。";
 			model.addAttribute("error", error);
-			
+
 			return "administrator/login";
-		} else {
-			session.setAttribute("administratorName",administrator.getName());
-			return "forward:/employee/showList";
 		}
 		
-		
+		session.setAttribute("administratorName", administrator.getName());
+		return "forward:/employee/showList";
+
+	}
+	
+	/**
+	 * セッション情報をクリアし、ログイン画面に戻る.
+	 * @return ログイン画面に戻る
+	 */
+	@RequestMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "redirect:/";
 	}
 
 }
